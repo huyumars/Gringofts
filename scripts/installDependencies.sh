@@ -22,7 +22,7 @@ fi
 PROMETHEUS=$(find /usr -name '*prometheus*')
 if [ -z "$PROMETHEUS" ]; then
   cd ~/temp/prometheus-cpp/ &&
-    cmake CMakeLists.txt && make -j 4 && make install
+    cmake CMakeLists.txt -DCMAKE_POSITION_INDEPENDENT_CODE=ON && make -j 4 && make install
   checkLastSuccess "install prometheus cpp client fails"
 else
   echo "prometheus client has been installed, skip"
@@ -44,7 +44,7 @@ if [ -z "$PROTOBUF" ]; then
   cd ~/temp/grpc/third_party/protobuf/cmake &&
     mkdir -p build && cd build &&
     # use cmake instead of autogen.sh so that protobuf-config.cmake can be installed
-    CXX=g++-7 CC=gcc-7 cmake -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Debug .. &&
+    CXX=g++-7 CC=gcc-7 cmake -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_POSITION_INDEPENDENT_CODE=ON .. &&
     make && make install && make clean && ldconfig
   checkLastSuccess "install protobuf fails"
 else
@@ -82,7 +82,7 @@ ABSL=$(find /usr -name '*libabsl*')
 if [ -z "$ABSL" ]; then
   cd ~/temp/abseil-cpp &&
     # explicitly set DCMAKE_CXX_STANDARD due to https://github.com/abseil/abseil-cpp/issues/218
-    CXX=g++-7 CC=gcc-7 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 &&
+    CXX=g++-7 CC=gcc-7 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DCMAKE_POSITION_INDEPENDENT_CODE=ON &&
     make && make install
   checkLastSuccess "install abseil-cpp fails"
 else

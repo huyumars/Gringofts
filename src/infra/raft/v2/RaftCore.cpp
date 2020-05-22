@@ -19,6 +19,11 @@ limitations under the License.
 #include <regex>
 #include <vector>
 
+extern "C" void RaftCore_Test(const char * configPath) {
+  gringofts::Util::executeCmd("mkdir ../test/infra/raft/node_1");
+  auto raftImpl = new gringofts::raft::v2::RaftCore("../test/infra/raft/config/raft_1.ini");
+}
+
 namespace gringofts {
 namespace raft {
 namespace v2 {

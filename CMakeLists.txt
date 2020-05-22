@@ -182,10 +182,17 @@ include_directories(third_party/inih/cpp)
 # abseil-cpp
 find_package(absl CONFIG REQUIRED)
 
+#monitoring
+include_directories(third_party/prometheus-cpp/core/include)
+include_directories(third_party/prometheus-cpp/pull/include)
+include_directories(third_party/prometheus-cpp/push/include)
+
+add_subdirectory(third_party/prometheus-cpp)
+
 set(MONITOR_LIBS
-        prometheus-cpp-push
-        prometheus-cpp-pull
-        prometheus-cpp-core)
+        core
+        push
+        pull)
 
 set(ROCKSDB_LIBS
         rocksdb.a

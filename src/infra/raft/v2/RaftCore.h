@@ -36,6 +36,8 @@ limitations under the License.
 #include "../StreamingService.h"
 #include "RaftService.h"
 
+extern "C" void RaftCore_Test(const char * configPath);
+
 namespace gringofts {
 namespace raft {
 namespace v2 {

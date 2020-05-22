@@ -40,12 +40,12 @@ set(UTIL_SRC
 # Libraries
 add_library(infra_monitor STATIC
         ${MONITOR_SRC})
-target_link_libraries(infra_monitor ${LIBRARIES})
+target_link_libraries(infra_monitor )
 
 add_library(infra_util STATIC
         ${UTIL_SRC})
 add_dependencies(infra_util store_proto_library)
-target_link_libraries(infra_util ${LIBRARIES})
+target_link_libraries(infra_util )
 
 add_library(infra STATIC
         ${INFRA_SRC})

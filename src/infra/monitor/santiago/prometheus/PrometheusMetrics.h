@@ -18,13 +18,17 @@ limitations under the License.
 #include <prometheus/registry.h>
 
 #include "../Metrics.h"
+#include <prometheus/counter.h>
+#include <prometheus/gauge.h>
+#include <prometheus/summary.h>
+
 
 namespace santiago {
 
 class PrometheusCounter {
  public:
   typedef prometheus::Counter InnerType;
-  typedef prometheus::detail::CounterBuilder InnerBuilder;
+  typedef prometheus::detail::Builder<prometheus::Counter> InnerBuilder;
   explicit PrometheusCounter(InnerType &);
   PrometheusCounter(const PrometheusCounter &) = default;
   PrometheusCounter(PrometheusCounter &&) = default;
@@ -38,7 +42,7 @@ class PrometheusCounter {
 class PrometheusGauge {
  public:
   typedef prometheus::Gauge InnerType;
-  typedef prometheus::detail::GaugeBuilder InnerBuilder;
+  typedef  prometheus::detail::Builder<prometheus::Gauge> InnerBuilder;
   explicit PrometheusGauge(InnerType &);
   PrometheusGauge(const PrometheusGauge &) = default;
   PrometheusGauge(PrometheusGauge &&) = default;
@@ -51,7 +55,7 @@ class PrometheusGauge {
 class PrometheusSummary {
  public:
   typedef prometheus::Summary InnerType;
-  typedef prometheus::detail::SummaryBuilder InnerBuilder;
+  typedef prometheus::detail::Builder<prometheus::Summary> InnerBuilder;
   explicit PrometheusSummary(InnerType &);
   PrometheusSummary(const PrometheusSummary &) = default;
   PrometheusSummary(PrometheusSummary &&) = default;

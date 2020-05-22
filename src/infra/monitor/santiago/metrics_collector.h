@@ -22,7 +22,7 @@ limitations under the License.
 #include <unordered_map>
 #include <utility>
 
-#include <prometheus/metric.h>
+#include <prometheus/counter.h>
 #include <prometheus/registry.h>
 
 namespace santiago {
